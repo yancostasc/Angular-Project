@@ -28,7 +28,7 @@ export class AppComponent {
     const title = this.form.controls["title"].value;
     const id = this.tasks.length + 1;
     this.tasks.push(new Todo(id, title, false))
-    this.save();
+    this.localSave();
     this.clear();
   }
 
@@ -51,7 +51,7 @@ export class AppComponent {
     todo.done = false;
   }
   
-  save() {
+  localSave() {
     const data = JSON.stringify(this.tasks);
     localStorage.setItem("tasks", data);
   }

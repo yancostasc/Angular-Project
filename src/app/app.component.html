@@ -8,7 +8,19 @@
     <button *ngIf = "!todo.done" (click) = "markAsDone(todo)">Concluir</button> |
     <button *ngIf = "todo.done" (click) = "markAsUndone(todo)">Refazer</button> |
     <button (click) = "remove(todo)">Remover</button> |
-
   </li>
 
 </ul>
+
+<form [formGroup] = "form">
+  <fieldset>
+    <label>Tarefas</label>
+
+    <input type="text" 
+    placeholder=" Título da Tarefa" 
+    maxlength="100" 
+    formControlName="title">
+
+    <button>Salvar</button>
+  </fieldset>
+</form>

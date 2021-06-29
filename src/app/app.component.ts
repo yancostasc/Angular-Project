@@ -10,7 +10,7 @@ import { Todo } from 'src/models/todo.model';
 
 export class AppComponent {
 
-  public todos: Todo[] = [];
+  public tasks: Todo[] = [];
   public title: String = 'Minhas Tarefas';
   public form: FormGroup;
 
@@ -26,15 +26,16 @@ export class AppComponent {
 
   add() {
     const title = this.form.controls["title"].value;
-    const id = this.todos.length + 1;
-    this.todos.push(new Todo(id, title, false))
+    const id = this.tasks.length + 1;
+    this.tasks.push(new Todo(id, title, false))
+    this.save();
     this.clear();
   }
 
   remove(todo: Todo) {
-    const index = this.todos.indexOf(todo)
+    const index = this.tasks.indexOf(todo)
     if (index !== -1) {
-     this.todos.splice(index, 1); 
+     this.tasks.splice(index, 1); 
     }
   }
 
@@ -50,4 +51,9 @@ export class AppComponent {
     todo.done = false;
   }
   
+  save() {
+    const data = JSON.stringify(this.tasks);
+    localStorage.setItem("tasks", data);
+  }
+
 }

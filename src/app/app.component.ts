@@ -22,9 +22,13 @@ export class AppComponent {
         Validators.required,
       ])]
     })
-    this.todos.push(new Todo(1, "Fazer um Café", true))
-    this.todos.push(new Todo(2, "Ir trabalhar", true))
-    this.todos.push(new Todo(3, "Ir estudar", false))
+  }
+
+  add() {
+    const title = this.form.controls["title"].value;
+    const id = this.todos.length + 1;
+    this.todos.push(new Todo(id, title, false))
+    this.clear();
   }
 
   remove(todo: Todo) {
@@ -32,6 +36,10 @@ export class AppComponent {
     if (index !== -1) {
      this.todos.splice(index, 1); 
     }
+  }
+
+  clear() {
+    this.form.reset();
   }
 
   markAsDone(todo: Todo) {

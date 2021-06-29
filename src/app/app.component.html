@@ -1,7 +1,9 @@
 <h1>{{ title }}</h1>
 
 <ul>
-
+  <p *ngIf = "todos.length==0">
+    <small>Nenhuma tarefa hoje.</small>
+  </p>
   <li *ngFor = "let todo of todos"> 
     {{ todo.id }}º 
     {{ todo.title }} |
@@ -17,12 +19,12 @@
     <label>Tarefas</label>
 
     <input 
-    type="text" 
-    placeholder="Título da Tarefa" 
-    maxlength="100" 
-    formControlName="title">
+    type = "text" 
+    placeholder = "Título da Tarefa" 
+    maxlength ="100" 
+    formControlName = "title">
 
-    <button>Salvar</button>
+    <button [disabled] = "form.invalid" (click) = "add()">Salvar</button>
 
     <small *ngIf = "form.controls.title.invalid && !form.controls.title.pristine">Este campo deve conter entre 3 e 100 caracteres.</small>
 

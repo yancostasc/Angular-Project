@@ -27,11 +27,11 @@ export class AppComponent {
   }
 
   markAsDone(todo: Todo) {
-
+    todo.done = true;
   }
 
   markAsUndone(todo: Todo) {
-
+    todo.done = false;
   }
   
 }
